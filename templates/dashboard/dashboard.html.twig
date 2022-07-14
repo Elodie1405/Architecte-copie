@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tableau de bord{% endblock %}
+
+{% block body %}
+
+<div class="container-account">
+
+    <div id="dashboard" class="page">
+    <h2 class="titre" >ADMINISTRATION</h2>
+    <br>
+    <br>
+    <br>
+<br>
+        <div class="bouton">
+        <a class="lien btn-lien" href="{{path('list-real')}}">Réalisations</a>
+<br>
+            <a class="lien btn-lien" href="{{path('calendar')}}"> Agenda </a>
+<br>
+            <a class="lien btn-lien" href="{{path('list-rdvs')}}"> RDVS CONSEIL</a>
+
+            <a class="lien btn-lien" href="{{path('dispo')}}"> Disponibilités RDV Conseil</a>
+        </div>
+
+</div>
+</div>
+
+{% endblock %}

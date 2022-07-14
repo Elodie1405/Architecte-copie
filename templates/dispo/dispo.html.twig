@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Prise de RDV{% endblock %}
+
+{% block body %}
+
+<div class="container-list">
+<h1 class="titre2"> Ajouter mes disponibilités</h1>
+
+<div  class="col-sm-12 col-lg-12 col-xl-12">
+    {% for label, messages in app.flashes %}
+    {% for message in messages %}
+    <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
+        {% if label == 'success' %}
+        <span class="alert-inner--icon"><i class="fe fe-thumbs-up"></i></span>
+        {% else %}
+        <span class="alert-inner--icon"><i class="fe fe-thumbs-down"></i></span>
+        {% endif %}
+        <span class="font alert-inner--text">{{ message | raw }}</span>
+    </div>
+    {% endfor %}
+    {% endfor %}
+</div>
+
+<div class="form-user">
+    {{form_start(dispoForm)}}
+
+    <div class="form-listing">
+    <div class="form-colonne">
+        <div class="form-item1">
+        {{form_label(dispoForm.start)}}
+        </div>
+        <div class="form-item2">
+        {{form_widget(dispoForm.start)}}
+        </div>
+ 
+    </div>
+    </div>
+    <div class="contact-form">
+    {{form_row(dispoForm.submit) }}
+</div>
+</div>
+
+{{ form_end(dispoForm)}}
+
+<a class="lien btn-lien" href="{{path('dashboard')}}">Retour</a>
+</div>
+
+
+
+{% endblock %}

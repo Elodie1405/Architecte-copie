@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Rdvs CONSEIL{% endblock %}
+
+{% block body %}
+
+<div class="container-list">
+    <h2 class="titre2">Rdvs CONSEIL</h2>
+
+{# MESSAGE ALERTE #}
+<div  class="col-sm-12 col-lg-12 col-xl-12">
+    {% for label, messages in app.flashes %}
+    {% for message in messages %}
+    <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
+        {% if label == 'success' %}
+        <span class="alert-inner--icon"><i class="fe fe-thumbs-up"></i></span>
+        {% else %}
+        <span class="alert-inner--icon"><i class="fe fe-thumbs-down"></i></span>
+        {% endif %}
+        <span class="font alert-inner--text">{{ message | raw }}</span>
+    </div>
+    {% endfor %}
+    {% endfor %}
+</div>
+{# FIN MESSAGE ALERTE #}
+    <br>
+    <a class="lien btn-lien" href="{{path('dashboard')}}">Retour au menu</a>
+    <br>
+    <br>
+    <br>
+    <div class="tableau">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Date du RDV</th>
+            <th scope="col">Nom Client</th>
+            <th scope="col">Prénom Client</th>
+            <th scope="col">Ville</th>
+            <th scope="col">Email</th>
+            <th scope="col">Role</th>
+            <th scope="col">Nom de l'entreprise</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for rdv in rdvs %}
+        <tr>
+            <th>{{rdv.dispo}}</th>
+            <td>{{rdv.customer.lastname}}</td>
+            <td>{{rdv.customer.firstname}}</td>
+            <td>{{rdv.customer.city}}</td>
+            <td>{{rdv.customer.email}}</td>
+            <td>{{rdv.customer.role}}</td>
+            <td>{{rdv.customer.raisonsociale}}</td>
+        </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+    </div>
+
+<br>
+<br>
+<br>
+<br>
+
+
+</div>
+
+
+{% endblock %}

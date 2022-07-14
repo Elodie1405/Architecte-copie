@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Prise de RDV{% endblock %}
+
+{% block body %}
+
+<div class="container-list">
+<h1 class="titre2">RDV choisi :</h1>
+
+
+
+
+
+<div class="form-user">
+    {{form_start(rdvForm)}}
+
+
+        <div class="form-item2">
+        {{form_widget(rdvForm.title)}}
+        </div>
+        <div class="form-item1">
+            Date sélectionnée : 
+        </div>
+        <div class="form-item2">
+            <input type="text" name="dispo-date" id="dispo-date" value="{{date}}">
+        </div>
+
+
+
+        <input type="hidden" name="dispo-id" id="dispo-id" value="{{id}}">
+
+    </div>
+    <div class="contact-form">
+    {{form_row(rdvForm.submit) }}
+</div>
+
+
+{{ form_end(rdvForm)}}
+
+
+
+
+<a class="lien btn-lien" href="{{path('account')}}">Retour</a>
+
+
+</div>
+
+{% endblock %}

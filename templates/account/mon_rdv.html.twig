@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon prochain RDV{% endblock %}
+
+{% block body %}
+
+<div class="container-list">
+
+{# MESSAGE ALERTE #}
+
+<div  class="col-sm-12 col-lg-12 col-xl-12">
+    {% for label, messages in app.flashes %}
+    {% for message in messages %}
+    <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
+        {% if label == 'success' %}
+        <span class="alert-inner--icon"><i class="fe fe-thumbs-up"></i></span>
+        {% else %}
+        <span class="alert-inner--icon"><i class="fe fe-thumbs-down"></i></span>
+        {% endif %}
+        <span class="font alert-inner--text">{{ message | raw }}</span>
+    </div>
+    {% endfor %}
+    {% endfor %}
+</div>
+
+{# FIN MESSAGE ALERTE #}
+
+{% for rdv in rdvs %}
+{% if rdv != null %}
+<h1 class="titre2">Bonjour, voici votre prochain RDV CONSEIL avec AB-Architecture :</h1>
+
+
+
+<div class="titre2">
+    <div class="titre3">
+        {{rdv.dispo.start|date('d-m-Y H:i')}}
+    </div>
+</div>
+
+
+<p class="titre2">
+Merci a vous !
+</p>
+
+<div class="centre">
+
+<a href="{{path('annuler_rdv', {'id': rdv.dispo.id })}}" onclick="return confirm('Voulez-vous vraiment annuler votre RDV conseil ?')" class="rdv btn-rdv">Annuler le RDV</a>
+
+<a class="rdv btn-rdv" href="{{path('account')}}">Retour</a>
+
+</div>
+{% else %}
+
+<h1 class="titre2"> Vous n'avez pas encore pris de RDV Conseil pour me présenter votre projet, voici le lien : </h1>
+
+<div class="lien-rdv">
+    <a class="rdv btn-rdv" href="{{path('list_rdv')}}"> PRENDRE UN RDV CONSEIL EN LIGNE</a>
+</div>
+{% endif %}
+
+{% endfor %}
+
+
+
+</div>
+{% endblock %}

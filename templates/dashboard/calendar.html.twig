@@ -1,0 +1,93 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Calendrier{% endblock %}
+
+{% block javascripts %}
+{# FULLCALENDAR #}
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.js" integrity="sha256-XCdgoNaBjzkUaEJiauEq+85q/xi/2D4NcB3ZHwAapoM=" crossorigin="anonymous"></script>
+
+{# FICHIER JAVASCRIPT PROJET #}
+<script src="{{asset('assets/js/script.js')}}"></script>
+
+{# SCRIPT POUR LE CALENDRIER #}
+<script>
+window.onload = () => {
+    var calendarElt = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarElt, {
+        initialView:'timeGridWeek',
+        locale:'fr',
+        selectable: true,
+        selectConstraint: {
+            daysOfWeek: [ 1, 2, 3, 4, 5, 6 ], 
+            startTime:'10:00:00', 
+            endTime:'18:00:00', 
+        },
+        timeZone:'Europe/Paris',
+        headerToolbar: {
+            start:'prev next today',
+            center:'title',
+            end:'timeGridWeek,dayGridMonth,listWeek'
+        },
+        businessHours: {
+            daysOfWeek: [ 1, 2, 3, 4, 5, 6 ], 
+            startTime:'10:00:00', 
+            endTime:'18:00:00', 
+        },
+        selectOverlap: false,
+        eventOverlap: false,
+        events: {{data|raw}},
+        editable : true,
+        eventDrop: (infos) => {
+            if(!confirm("Etes-vous sûr de vouloir déplacer le RDV ?")){
+                infos.revert();
+            }
+        },
+        eventResizableFromStart: true,
+    })
+
+    calendar.on('eventChange', (e) => {
+        let url = `/api/${e.event.id}/edit`
+        let donnees = {
+            "title": e.event.title,
+            "start": e.event.start,
+            "end": e.event.end,
+            "backgroundColor": e.event.backgroundColor,
+            "allDay": e.event.allDay
+        }
+
+        let xhr = new XMLHttpRequest
+
+        xhr.open("PUT", url)
+        xhr.send(JSON.stringify(donnees))
+    })
+
+    calendar.updateSize();
+    calendar.render();
+}
+</script>
+
+
+{% endblock %}
+
+
+{% block body %}
+
+<br>
+<br>
+<br>
+<div>
+    <a class="lien btn-lien" href="{{path('nouveau_rdv')}}">Nouveau Rdv</a>
+ 
+    <a class="lien btn-lien" href="{{path('dashboard')}}">Retour au menu</a>
+</div>
+<br>
+<br>
+
+<div id="calendar"></div>
+
+
+
+
+
+{% endblock %}
+

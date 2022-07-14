@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Laisser-moi un avis{% endblock %}
+
+{% block body %}
+
+<div class="container-list">
+<h1 class="titre2"> Laisser moi votre avis !</h1>
+
+
+
+<div class="form-user">
+    {{form_start(avisForm)}}
+
+    <div class="form-listing">
+    <div class="form-colonne">
+        <div class="form-item1">
+        {{form_label(avisForm.title)}}
+        </div>
+        <div class="form-item2">
+        {{form_widget(avisForm.title)}}
+        </div>
+        <div class="form-item1">
+        {{form_label(avisForm.message)}}
+        </div>
+        <div class="form-item2">
+        {{form_widget(avisForm.message)}}
+        </div>
+        <br>
+        <div class="form-item1">
+            Note :
+        </div>
+        <div class="form-item1">
+            <i class="lar la-star" data-value="1"></i><i class="lar la-star" data-value="2"></i><i class="lar la-star" data-value="3"></i><i class="lar la-star" data-value="4"></i><i class="lar la-star" data-value="5"></i>
+        </div>
+        <input type="hidden" name="note" id="note" value="0">
+    </div>
+    </div>
+    <div class="contact-form">
+    {{form_row(avisForm.submit) }}
+</div>
+</div>
+
+{{ form_end(avisForm)}}
+
+<a class="lien btn-lien" href="{{path('account')}}">Retour</a>
+</div>
+
+
+{% endblock %}

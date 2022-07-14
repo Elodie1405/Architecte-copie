@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Réalisations{% endblock %}
+
+{% block body %}
+
+<div class="container-list">
+<h1 class="titre2">  Ajouter une nouvelle réalisation</h1>
+
+<div  class="col-sm-12 col-lg-12 col-xl-12">
+    {% for label, messages in app.flashes %}
+    {% for message in messages %}
+    <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
+        {% if label == 'success' %}
+        <span class="alert-inner--icon"><i class="fe fe-thumbs-up"></i></span>
+        {% else %}
+        <span class="alert-inner--icon"><i class="fe fe-thumbs-down"></i></span>
+        {% endif %}
+        <span class="font alert-inner--text">{{ message | raw }}</span>
+    </div>
+    {% endfor %}
+    {% endfor %}
+</div>
+
+<div class="form-user">
+    {{form_start(realisationForm)}}
+
+<div class="form-listing">
+ <div class="form-colonne">
+
+        <div class="form-item1">
+        {{form_label(realisationForm.title) }}
+        </div>
+        <div class="form-item2">
+        {{form_widget(realisationForm.title) }}
+        </div>
+        <div class="form-item1">
+        {{form_label(realisationForm.subtitle) }}
+        </div>
+        <div class="form-item2">
+        {{form_widget(realisationForm.subtitle) }}
+        </div>
+        <div class="form-item1">
+        {{form_label(realisationForm.description) }}
+        </div>
+        <div class="form-item2">
+        {{form_widget(realisationForm.description) }}
+        </div>
+
+    </div>
+    <div class="form-colonne">
+        <div class="form-item1">
+        {{form_label(realisationForm.picture)}}
+        </div>
+        <div class="form-item2">
+        {{form_widget(realisationForm.picture)}}
+        </div>
+        <div class="form-item1">
+        {{form_label(realisationForm.surface) }}
+        </div>
+        <div class="form-item2">
+        {{form_widget(realisationForm.surface) }}
+        </div>
+        <div class="form-item1">
+        {{form_label(realisationForm.style) }}
+        </div>
+        <div class="form-item2">
+        {{form_widget(realisationForm.style) }}
+        </div>
+        <br>
+        <br>
+    </div>
+</div>
+<div class="ajout">
+    {{form_row(realisationForm.submit) }}
+</div>
+</div>
+
+<a class="lien btn-lien" href="{{path('list-real')}}">Retour</a>
+
+
+{{ form_end(realisationForm)}}
+</div>
+</div>
+
+{% endblock %}

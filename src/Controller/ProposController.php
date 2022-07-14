@@ -1,0 +1,18 @@
+<?php
+
+namespace App\Controller;
+
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+
+class ProposController extends AbstractController
+{
+    /**
+     * @Route("/propos", name="propos")
+     */
+    public function propos(): Response
+    {
+        return $this->render('propos/propos.html.twig');
+    }
+}

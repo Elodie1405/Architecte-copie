@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connectez-vous !{% endblock %}
+
+{% block body %}
+
+<div  class="col-sm-12 col-lg-12 col-xl-12">
+        {% for label, messages in app.flashes %}
+        {% for message in messages %}
+        <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
+            {% if label == 'success' %}
+            <span class="alert-inner--icon"><i class="fe fe-thumbs-up"></i></span>
+            {% else %}
+            <span class="alert-inner--icon"><i class="fe fe-thumbs-down"></i></span>
+            {% endif %}
+            <span class="alert-inner--text"><strong>{{ label | title }} : </strong> {{ message | raw }}</span>
+
+        </div>
+        {% endfor %}
+        {% endfor %}
+    </div>
+
+
+<form class="log" method="post">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    {% if app.user %}
+        <div class="mb-3">
+            Vous êtes connecté {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Déconnexion</a>
+        </div>
+    {% endif %}
+    
+    <div class="sign-in">
+    <h1>Connectez-vous !</h1>
+    <label for="inputEmail">Email</label>
+    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+    <label for="inputPassword">Mot de passe</label>
+    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+
+    <input type="hidden" name="_csrf_token"
+    value="{{ csrf_token('authenticate') }}"
+    >
+
+    {#
+        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+        See https://symfony.com/doc/current/security/remember_me.html
+
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" name="_remember_me"> Remember me
+            </label>
+        </div>
+    #}
+
+    <a class="password" href="{{ path('resetPassword') }}">Mot de passe oublié ?</a>
+    <br>
+
+    <button class="sign-btn" type="submit">
+        CONNEXION
+    </button>
+    </div>
+</form>
+{% endblock %}

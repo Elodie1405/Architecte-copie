@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes informations personnelles{% endblock %}
+
+{% block body %}
+
+<div class="container-list">
+<h1 class="titre2">  Vos informations personnelles </h1>
+
+<div  class="col-sm-12 col-lg-12 col-xl-12">
+    {% for label, messages in app.flashes %}
+    {% for message in messages %}
+    <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
+        {% if label == 'success' %}
+        <span class="alert-inner--icon"><i class="fe fe-thumbs-up"></i></span>
+        {% else %}
+        <span class="alert-inner--icon"><i class="fe fe-thumbs-down"></i></span>
+        {% endif %}
+        <span class="font alert-inner--text">{{ message | raw }}</span>
+    </div>
+    {% endfor %}
+    {% endfor %}
+</div>
+
+<div class="form-user">
+    {{form_start(editUserForm)}}
+
+    <div class="form-list">
+        <div class="form-col">
+    {% if app.user and app.user.role == "User" %}
+        <div class="form-item1 invisible" >
+        {{form_label(editUserForm.raison_sociale) }}
+        </div>
+        <div class="form-item2 invisible">
+        {{form_widget(editUserForm.raison_sociale) }}
+        </div>
+        {% else %}
+        <div class="form-item1" >
+        {{form_label(editUserForm.raison_sociale) }}
+        </div>
+        <div class="form-item2">
+        {{form_widget(editUserForm.raison_sociale) }}
+        </div>
+        {% endif %}
+        </div>
+        <br>
+        <br>
+        <div class="form-col">
+        <div class="form-item1">
+        {{form_label(editUserForm.lastname)}}
+        </div>
+        <div class="form-item2">
+        {{form_widget(editUserForm.lastname)}}
+        </div>
+        <div class="form-item1">
+        {{form_label(editUserForm.firstname)}}
+        </div>
+        <div class="form-item2">
+        {{form_widget(editUserForm.firstname)}}
+        </div>
+        </div>
+        <div class="form-col">
+        <div class="form-item1">
+        {{form_label(editUserForm.city) }}
+        </div>
+        <div class="form-item2 form-ville">
+        {{form_widget(editUserForm.city) }}
+        </div>
+        <div class="form-item1">
+        {{form_label(editUserForm.email) }}
+        </div>
+        <div class="form-item2 form-email">
+        {{form_widget(editUserForm.email) }}
+        </div>
+        </div>
+    </div>
+    {{form_row(editUserForm.submit) }}
+</div>
+
+{{ form_end(editUserForm)}}
+
+<a class="lien btn-lien" href="{{path('account')}}">Retour</a>
+</div>
+
+
+{% endblock %}

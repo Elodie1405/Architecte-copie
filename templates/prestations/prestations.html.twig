@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Prestations{% endblock %}
+
+{% block body %}
+
+<div class="page" id="presta">
+    <h2 class="titre">PRESTATIONS</h2>
+
+    <div class="line">
+        <div class="image-gauche">
+        <img src="{{asset('assets/images/presta/christian-mackie-unsplash.jpg')}}" alt="">
+        </div>
+        <div class="texte">
+    <h4>Architecture d'intérieur</h4>
+    <br>
+    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        </div>
+        <div class="image-droite">
+    <img src="{{asset('assets/images/slider3-1/spacejoy-4.jpg')}}" alt="">
+        </div>
+    </div>
+
+    <div class="line">
+        <div class="image-droite">
+        <img src="{{asset('assets/images/presta/spacejoy-boudoir-unsplash.jpg')}}" alt="">
+        </div>
+        <div class="texte droit">
+    <h4>Décoration intérieure</h4>
+    <br>
+    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        </div>
+        <div class="image-gauche">
+    <img src="{{asset('assets/images/presta/spacejoy-entree-unsplash.jpg')}}" alt="">
+        </div>
+    </div>
+
+    <div class="line">
+        <div class="image-gauche">
+        <img src="{{asset('assets/images/presta/taylor-friehl-unsplash.jpg')}}" alt="">
+        </div>
+        <div class="texte">
+    <h4>Architecture commerciale</h4>
+    <br>
+    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        </div>
+        <div class="image-droite">
+    <img src="{{asset('assets/images/presta/uneebo-office-unsplash.jpg')}}" alt="">
+        </div>
+    </div>
+
+    <div class="line">
+        <div class="image-droite">
+        <img src="{{asset('assets/images/presta/cameron-smith-unsplash.jpg')}}" alt="">
+        </div>
+        <div class="texte droit">
+    <h4>Aménagement extérieur</h4>
+    <br>
+    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        </div>
+        <div class="image-gauche">
+    <img src="{{asset('assets/images/presta/sonnie-hiles-unsplash.jpg')}}" alt="">
+        </div>
+    </div>
+    
+<div class="lien-contact">
+{% if not app.user %}
+<a class="lien btn-contact" href="{{path('app_login')}}"> Réservez votre RDV CONSEIL en ligne</a>
+{% else %}
+<a class="lien btn-contact" href="{{path('account')}}"> Réservez votre RDV CONSEIL en ligne</a>
+{% endif %}
+</div>
+
+</div>
+
+{% endblock %}

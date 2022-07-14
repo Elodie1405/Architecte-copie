@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscrivez-vous !{% endblock %}
+
+{% block body %}
+
+<div  class="col-sm-12 col-lg-12 col-xl-12">
+        {% for label, messages in app.flashes %}
+        {% for message in messages %}
+        <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
+            {% if label == 'success' %}
+            <span class="alert-inner--icon"><i class="fe fe-thumbs-up"></i></span>
+            {% else %}
+            <span class="alert-inner--icon"><i class="fe fe-thumbs-down"></i></span>
+            {% endif %}
+            <span class="alert-inner--text"><strong>{{ label | title }} : </strong> {{ message | raw }}</span>
+        
+            
+            </button>
+        </div>
+        {% endfor %}
+        {% endfor %}
+    </div>
+
+
+<div class="container-register">
+{{form_start(registerForm)}}
+
+    <div class="banniere-titre">
+        <h1 id="titre">Inscrivez-vous dès maintenant !</h1>
+    </div>
+
+    <div class="formulaire">
+        <fieldset>
+            <legend>Vous êtes : </legend>
+            <div class="form-col">
+                <div>
+                    <input id="register_form_roles_0" name ="register_form[roles]" value="ROLE_PRO" type="radio" onclick="afficher()" checked>
+                    <label for="register_form_roles_0">Un professionnel</label>
+                </div>
+                <div>
+                    <input id="register_form_roles_1"name ="register_form[roles]" value="ROLE_USER" type="radio" onclick="effacer()">
+                    <label for="register_form_roles_1">Un particulier</label>
+                </div>
+            </div>
+        </fieldset>
+    
+        <div class="form-item form-pro">
+            {{form_row(registerForm.raison_sociale, {'label' : false}) }}
+        </div>
+        <div class="form-col">
+            <div class="form-item">
+            {{form_row(registerForm.lastname, {'label' : false})}}
+            </div>
+            <div class="form-item">
+            {{form_row(registerForm.firstname,{'label' : false})}}
+            </div>
+        </div>
+      
+        <div class="form-col">
+            <div class="form-item">
+            {{form_row(registerForm.city, {'label' : false}) }}
+        </div>
+            <div class="form-item">
+            {{form_row(registerForm.email, {'label' : false}) }}
+        </div>
+    </div>
+
+        <div class="form-col">
+            <div class="form-item">
+            {{form_row(registerForm.password.first, {'label' : false}) }}
+            </div>
+            <div class="form-item">
+            {{form_row(registerForm.password.second, {'label' : false}) }}
+            </div>
+        </div>
+        {{form_row(registerForm.submit) }}
+    </div>
+    {{ form_end(registerForm)}}
+</div>
+
+{% endblock %}

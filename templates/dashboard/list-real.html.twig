@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes réalisations{% endblock %}
+
+{% block body %}
+
+<div class="container-tdb">
+    <h2 class="titre2">Mes réalisations et projets</h2>
+
+{# MESSAGE ALERTE #}
+<div  class="col-sm-12 col-lg-12 col-xl-12">
+    {% for label, messages in app.flashes %}
+    {% for message in messages %}
+    <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
+        {% if label == 'success' %}
+        <span class="alert-inner--icon"><i class="fe fe-thumbs-up"></i></span>
+        {% else %}
+        <span class="alert-inner--icon"><i class="fe fe-thumbs-down"></i></span>
+        {% endif %}
+        <span class="font alert-inner--text">{{ message | raw }}</span>
+    </div>
+    {% endfor %}
+    {% endfor %}
+</div>
+{# FIN MESSAGE ALERTE #}
+    <br>
+    <a class="lien btn-lien" href="{{path('add_realisations')}}">Ajouter une réalisation</a>
+    <a class="lien btn-lien" href="{{path('dashboard')}}">Retour au menu</a>
+    <br>
+    <br>
+    <br>
+    <div class="tableau">
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Titre</th>
+            <th scope="col">Sous-titre</th>
+            <th scope="col">Description</th>
+            <th scope="col">Photo</th>
+            <th scope="col">Surface</th>
+            <th scope="col">Style</th>
+            <th scope="col">Date ajout</th>
+            <th scope="col">Options</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for realisation in realisations %}
+        <tr>
+            <th>{{realisation.id}}</th>
+            <td>{{realisation.title}}</td>
+            <td>{{realisation.subtitle}}</td>
+            <td>{{realisation.description}}</td>
+            <td><img style="width:80px;height:80px;" src="{{asset('projets/' ~ realisation.picture)}}" alt=""></td>
+            <td>{{realisation.surface}}</td>
+            <td>{{realisation.style}}</td>
+            <td>{{realisation.createdat | date('d-m-y  à h:s')}}</td>
+            <td><a href="{{path('delete_realisation',{'id': realisation.id })}}" onclick="return confirm('Voulez-vous vraiment supprimer cette realisation ?')"><i class="fa fa-trash"></i></a> |  <a href="{{path('edit_realisation',{'id': realisation.id })}}"><i class="fa fa-edit"></i></a> 
+            </td>
+        </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+
+<br>
+<br>
+<br>
+<br>
+
+
+</div>
+
+{% endblock %}

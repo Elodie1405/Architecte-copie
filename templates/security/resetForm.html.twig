@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div  class="col-sm-12 col-lg-12 col-xl-12">
+        {% for label, messages in app.flashes %}
+        {% for message in messages %}
+        <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
+            {% if label == 'success' %}
+            <span class="alert-inner--icon"><i class="fe fe-thumbs-up"></i></span>
+            {% else %}
+            <span class="alert-inner--icon"><i class="fe fe-thumbs-down"></i></span>
+            {% endif %}
+            <span class="alert-inner--text"><strong>{{ label | title }} : </strong> {{ message | raw }}</span>
+            <button type="button" class="btn btn-primary close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        {% endfor %}
+        {% endfor %}
+    </div>
+
+
+
+    <form class="log reset" action="{{path('finalReset')}}" method="post">
+        <div class="form-group">
+            <label for="exampleInputPassword1">Mot de passe :</label>
+            <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Confirmez votre mot de passe :</label>
+            <input type="password" name="confirm_password" class="form-control" id="exampleInputPassword1">
+        </div>
+        <input type="hidden" name="id" value="{{ id }}">
+        <button class="sign-btn petit" type="submit"> Envoyer</button>
+    </form>
+
+
+{% endblock %}

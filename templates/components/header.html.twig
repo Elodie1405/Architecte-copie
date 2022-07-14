@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue chez AB Architecture</title>
+</head>
+
+
+    <!-- MENU MOBILE -->
+<div class="navbar-mobile">
+    <img src="{{asset('assets/images/logo1.png')}}">
+    <i class="burger fa-solid fa-bars" ></i>
+    <div class="modale">
+        <div class="navbar-mobile-list">
+            <ul class="mobile">
+                <li><a href="{{path('home')}}">Home</a></li>
+                <li><a href="{{path('propos')}}">À propos</a></li>
+                <li><a href="{{path('realisations')}}">Réalisations</a></li>
+                <li><a href="{{path('prestations')}}">Prestations</a></li>
+                <li><a href="{{path('emailForm')}}">Contact</a></li>
+                    {% if not app.user %}
+                <li><a href="{{path('register')}}"><i class="fa-solid fa-user-plus"></i>S'inscrire</a></li>
+                <li><a href="{{path('app_login')}}"><i class="fa-solid fa-circle-chevron-right"></i>Se connecter</a></li>
+                    {% endif %}
+                    {% if app.user and app.user.role != "Admin" %}    
+                <li><a href="{{path('account')}}"><i class="fa-solid fa-user"></i>Mon compte</a></li>
+                <li><a href="{{path('app_logout')}}"><i class="fa-solid fa-circle-xmark"></i>Déconnexion</a></li>
+                    {% endif %}
+                    {% if app.user and app.user.role == "Admin" %}            
+                    <li><a href="{{path('dashboard')}}"><i class="fa-solid fa-table-columns"></i>Administration</a></li>
+                    <li><a href="{{path('app_logout')}}"><i class="fa-solid fa-circle-xmark"></i>Déconnexion</a></li>
+					{% endif %}
+                    </ul>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- MENU GRAND ECRAN -->
+<div class="navbar-desktop">
+    <div class="banniere">
+        <img src="{{asset('assets/images/logo3.png')}}" alt="banniere">
+    </div>
+<div class="nav-bar">
+    <ul class="first">
+        <li><a href="{{path('home')}}">Home</a></li>
+        <li><a href="{{path('propos')}}">À propos</a></li>
+        <li><a href="{{path('realisations')}}">Réalisations</a></li>
+        <li><a href="{{path('prestations')}}">Prestations</a></li>
+        <li><a href="{{path('emailForm')}}">Contact</a></li>
+    </ul>
+    <ul class="second">
+            {% if not app.user %}
+        <li><a href="{{path('register')}}"><i class="fa-solid fa-user-plus"></i>S'inscrire</a></li>
+        <li><a href="{{path('app_login')}}"><i class="fa-solid fa-circle-chevron-right"></i>Se connecter</a></li>
+            {% endif %}
+            {% if app.user and app.user.role != "Admin" %}
+        <li><a href="{{path('account')}}"><i class="fa-solid fa-user"></i>Mon Compte</a></li>
+        <li><a href="{{path('app_logout')}}"><i class="fa-solid fa-circle-xmark"></i>Déconnexion</a></li>
+            {% endif %}
+            {% if app.user and app.user.role == "Admin" %}            
+        <li><a href="{{path('dashboard')}}"><i class="fa-solid fa-table-columns"></i>Administration</a></li>
+        <li><a href="{{path('app_logout')}}"><i class="fa-solid fa-circle-xmark"></i>Déconnexion</a></li>
+			{% endif %}
+    </ul>
+</div>
+</div>
+<body>
+
+    
+

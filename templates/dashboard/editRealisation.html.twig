@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tableau de bord{% endblock %}
+
+{% block body %}
+
+<div class="container-list">
+<h1 class="titre2">  Modifier une réalisation</h1>
+
+<div  class="col-sm-12 col-lg-12 col-xl-12">
+    {% for label, messages in app.flashes %}
+    {% for message in messages %}
+    <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
+        {% if label == 'success' %}
+        <span class="alert-inner--icon"><i class="fe fe-thumbs-up"></i></span>
+        {% else %}
+        <span class="alert-inner--icon"><i class="fe fe-thumbs-down"></i></span>
+        {% endif %}
+        <span class="font alert-inner--text">{{ message | raw }}</span>
+    </div>
+    {% endfor %}
+    {% endfor %}
+</div>
+
+<div class="form-user">
+    {{form_start(editRealisationForm)}}
+
+    <div class="form-listing">
+ <div class="form-colonne">
+
+        <div class="form-item1">
+        {{form_label(editRealisationForm.title) }}
+        </div>
+        <div class="form-item2">
+        {{form_widget(editRealisationForm.title) }}
+        </div>
+        <div class="form-item1">
+        {{form_label(editRealisationForm.subtitle) }}
+        </div>
+        <div class="form-item2">
+        {{form_widget(editRealisationForm.subtitle) }}
+        </div>
+        <div class="form-item1">
+        {{form_label(editRealisationForm.description) }}
+        </div>
+        <div class="form-item2">
+        {{form_widget(editRealisationForm.description) }}
+        </div>
+
+    </div>
+    <div class="form-colonne">
+        <div class="form-item1">
+        {{form_label(editRealisationForm.picture)}}
+        </div>
+        <div class="form-item2">
+        {{form_widget(editRealisationForm.picture)}}
+        </div>
+        <div class="form-item1">
+        {{form_label(editRealisationForm.surface) }}
+        </div>
+        <div class="form-item2">
+        {{form_widget(editRealisationForm.surface) }}
+        </div>
+        <div class="form-item1">
+        {{form_label(editRealisationForm.style) }}
+        </div>
+        <div class="form-item2">
+        {{form_widget(editRealisationForm.style) }}
+        </div>
+        <br>
+        <br>
+    </div>
+</div>
+<div class="ajout">
+    {{form_row(editRealisationForm.submit) }}
+</div>
+</div>
+
+<a class="lien btn-lien" href="{{path('list-real')}}">Retour</a>
+
+
+{{ form_end(editRealisationForm)}}
+</div>
+</div>
+
+
+
+{% endblock %}

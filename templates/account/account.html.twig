@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon compte{% endblock %}
+
+{% block body %}
+<div class="container-account">
+    <div class="page list-items">
+    <h2 class="titre" >MON COMPTE</h2>
+<br>
+<br>
+    <h3 class="titre2">  Bonjour {{app.user.firstname}} {{app.user.lastname | upper}} ! </h3>
+
+{# MESSAGE D'ALERTE #}
+<div  class="col-sm-12 col-lg-12 col-xl-12">
+    {% for label, messages in app.flashes %}
+    {% for message in messages %}
+    <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
+        {% if label == 'success' %}
+        <span class="alert-inner--icon"><i class="fe fe-thumbs-up"></i></span>
+        {% else %}
+        <span class="alert-inner--icon"><i class="fe fe-thumbs-down"></i></span>
+        {% endif %}
+        <span class="font alert-inner--text">{{ message | raw }}</span>
+    </div>
+    {% endfor %}
+    {% endfor %}
+</div>
+{# FIN DU MESSAGE D'ALERTE #}
+
+
+<br>
+        <div class="bouton">
+        <a class="lien btn-lien" href="{{path('edit_info',{'id': app.user.id })}}" >Vos informations personnelles</a>
+
+<br>
+{% if app.user.rdvs is not empty %}
+            <a class="lien btn-lien" href="{{path('mon_rdv')}}"> Votre RDV Conseil à venir</a>
+{% else %}
+
+{% endif %}
+{% if app.user.rdvs is not empty %}
+        <br>
+            <a class="lien btn-lien" href="{{path('avis',{'id': app.user.id })}}"> Laisser un avis</a>
+      
+{% else %}
+
+{% endif %}
+<br>
+{% if app.user.rdvs is empty %}
+<div class="lien-rdv">
+    <a class="rdv btn-rdv" href="{{path('list_rdv')}}"> PRENDRE UN RDV CONSEIL EN LIGNE</a>
+</div>
+{% else %}
+
+{% endif %}
+</div>
+</div>
+</div>
+{% endblock %}

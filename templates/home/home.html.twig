@@ -1,0 +1,114 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+
+<div class="container-home">
+<div id="captioned-gallery">
+	<figure class="slider">
+		<figure>
+			<img src="{{asset('assets/images/home/spacejoy-salon3-unsplash.jpg')}}" alt>
+			<figcaption>Bienvenue chez AB Architecture</figcaption>
+		</figure>
+		<figure>
+			<img src="{{asset('assets/images/home/r-architecture-unsplash.jpg')}}" alt>
+			<figcaption>Architecte d'intérieur</figcaption>
+		</figure>
+			<figure>
+			<img src="{{asset('assets/images/home/spacejoy-outdoor-unsplash.jpg')}}" alt>
+			<figcaption>Aménagement extérieur</figcaption>
+		</figure>
+		<figure>
+		<img src="{{asset('assets/images/home/spacejoy-salon-unsplash.jpg')}}" alt>
+			<figcaption>Relooking d'intérieur</figcaption>
+		</figure>
+			<figure>
+	<img src="{{asset('assets/images/home/spacejoy-bedroom-unsplash.jpg')}}" alt>
+	<figcaption>Décoratrice d'intérieur</figcaption>
+		</figure>
+	</figure>
+</div>
+
+<div class="line">
+	<div class="image-gauche">
+	<img src="{{asset('assets/images/home/jonathan-borba-unsplash.jpg')}}" alt="">
+	</div>
+
+	<div class="texte">
+	<h1>Architecte et décoratrice d'intérieur</h1>
+	<p>"On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains."
+	</p>
+	</div>
+</div>
+
+<div class="line">
+	<div class="texte">
+	<h1>Besoin de temps pour m'expliquer votre projet ?</h1>
+	<p>Ce RDV de deux heures peut se faire en présentiel ou en visioconférence et va nous permettre ensemble de prendre la mesure de votre projet et de vous proposez par la suite un devis.
+	<br>
+	N'hésitez pas à vous inscrire pour réserver un RDV Conseil et me présenter votre projet de décoration !
+	</p>
+
+	<div class="lien-contact">
+{% if not app.user %}
+<a class="lien btn-contact" href="{{path('app_login')}}"> Réservez votre RDV CONSEIL en ligne</a>
+{% else %}
+<a class="lien btn-contact" href="{{path('account')}}"> Réservez votre RDV CONSEIL en ligne</a>
+{% endif %}
+</div>
+	</div>
+	<div class="image-droite">
+	<img src="{{asset('assets/images/home/toa-heftiba-unsplash.jpg')}}" alt="">
+	</div>
+</div>
+
+<div class="line">
+	
+	<div class="texte">
+	<h1>Mes prestations</h1>
+	<p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+	</p>
+
+	<br>
+	<div class="line2">
+		<div class="projet archi">Projet tout en un</div>
+		<div class="projet relook">Relooking déco</div>
+		<div class="projet pro">Projet professionnel</div>
+		<div class="projet ext">Aménagement extérieur</div>
+	</div>
+
+	<div class="lien-contact">
+	<a class="lien btn-contact" href="{{path('prestations')}}">+ de prestations</a>
+	<br>
+</div>
+</div>
+</div>
+
+<div class="line">
+	
+	<div class="texte-real">
+	<h1>Quelques réalisations</h1>
+	<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+	<div class="line2">
+		<div class="real un"></div>
+		<div class="real deux"></div>
+		<div class="real trois"></div>
+		<div class="real quatre"></div>
+		<div class="real cinq"></div>
+		<div class="real six"></div>
+		<div class="real sept"></div>
+	</div>
+<div class="lien-contact">
+	<a class="lien btn-contact" href="{{path('realisations')}}">+ de projets réalisés</a>
+</div>
+</div>
+</div>
+
+
+</div>
+<div class="avis">
+
+</div>
+{% endblock %}

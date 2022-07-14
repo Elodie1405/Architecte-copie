@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Réalisations{% endblock %}
+
+{% block body %}
+
+<div class="page" id="real">
+    <h2 class="titre">REALISATIONS</h2>
+        <div class="container">
+                    <div class="row">
+
+{% for realisation in realisations %}
+<section class="col-md-4 images-container">
+    <img src="{{asset('projets/' ~ realisation.picture)}}" alt="Card image cap">
+    <div class="hover">
+        <div class="text">
+            <h2>{{realisation.title}}</h2>
+            <h3>{{realisation.subtitle}}</h3>
+            <h4>Style : {{realisation.style}}</h4>
+        </div>
+    </div>
+</section>
+{% endfor %}
+<div class="lien-contact">
+{% if not app.user %}
+<a class="lien btn-contact" href="{{path('app_login')}}"> Discutons ensemble de votre projet lors d'un RDV CONSEIL</a>
+{% else %}
+<a class="lien btn-contact" href="{{path('account')}}"> Discutons ensemble de votre projet lors d'un RDV CONSEIL</a>
+{% endif %}
+</div>
+</div>
+</div>
+</div>
+
+
+{% endblock %}
